@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client</title>
+</head>
+<body>
+    <center>
+        <p>Siswa:</p>
+        <select id="list">
+            <option ></option>
+        </select>
+        <script>
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload=function(){
+                const myobj=JSON.parse(this.responseText);
+                let text
+                for(let x in myobj){
+                    text+= "<option>" + myobj[x].nama + "</option>";
+                    document.getElementById("list").innerHTML=text;
+                }
+            }
+            xhttp.open("GET","http://localhost/freyzi/api/read?table=tb_siswa");
+            xhttp.send();
+            </script>
+    </center>
+</body>
+</html>
